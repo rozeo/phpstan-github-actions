@@ -1,7 +1,17 @@
 #!/usr/bin/env php
 <?php
 
-require_once __DIR__ . "/../src/PullRequestResponder.php";
+// load autoloader
+$pathes = [
+    __DIR__ . '/../vendor/autoload.php',
+    __DIR__ . '/../autoload.php'
+];
+
+foreach ($pathes as $path) {
+    if (file_exists($path)) {
+        require_once $path;
+    }
+}
 
 $cmd = "./vendor/bin/phpstan analyse -c phpstan.neon --no-progress --error-format=markdown";
 $stream = popen($cmd, "r");
