@@ -3,7 +3,10 @@
 
 require_once __DIR__ . "/../vendor/autoload.php";
 
-$output = exec("./vendor/bin/phpstan analyse -c phpstan.neon --no-progress --error-format=markdown");
+$cmd = "./vendor/bin/phpstan analyse -c phpstan.neon --no-progress --error-format=markdown";
+$stream = popen($cmd, "r");
+$output = stream_get_contents($stream);
+fclose($stream);
 
 if ($output !== '') {
     echo $output;
