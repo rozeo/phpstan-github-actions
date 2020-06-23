@@ -31,7 +31,8 @@ class PullRequestResponder
     {
         $client = new \GuzzleHttp\Client;
 
-        $client->post(
+        $client->request(
+            'POST',
             $this->endpoint,
             [
                 'headers' => [
