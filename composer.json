@@ -20,5 +20,8 @@
         "psr-4": {
             "PHPStan\\": "highlights/"
         }
-    }
+    },
+    "bin": [
+        "bin/phpstan-github-actions"
+    ]
 }

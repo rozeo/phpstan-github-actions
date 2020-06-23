@@ -11,6 +11,6 @@ class TestClass
 
     public function hoge()
     {
-        
+
     }
 }
