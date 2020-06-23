@@ -1,7 +1,7 @@
 #!/usr/bin/env php
 <?php
 
-require_once __DIR__ . "/../vendor/autoload.php";
+require_once __DIR__ . "/../src/PullRequestResponder.php";
 
 $cmd = "./vendor/bin/phpstan analyse -c phpstan.neon --no-progress --error-format=markdown";
 $stream = popen($cmd, "r");
