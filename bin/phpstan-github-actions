@@ -9,6 +9,7 @@ $pathes = [
 
 foreach ($pathes as $path) {
     if (file_exists($path)) {
+        echo "load: " . $path;
         require_once $path;
     }
 }
