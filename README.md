@@ -10,7 +10,7 @@ https://github.com/rozeo/phpstan-github-actions/pull/1#issuecomment-648011582
 ```
 "rozeo/phpstan-github-actions": "^1.0.0"
 ```
-2. put `phpstan.neon` setting file to repository root.
+2. put `phpstan.neon` setting file on repository root.
 ```
 touch phpstan.neon
 ```
