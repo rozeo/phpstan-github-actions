@@ -32,8 +32,22 @@ class PHPStanMarkdownFormatter
 
     protected function outputError(Output $output, Error $error): void
     {
-        $output->writeRaw("### Error on {$this->trailPath($error->getFile())}:{$error->getLine()}\n");
-        $output->writeRaw($error->getMessage() . "\n");
+        $hash = getenv('GITHUB_SHA');
+        $repository = getenv('GITHUB_REPOSITORY');
+
+        $file = $this->trailPath($error->getFile());
+
+        if ($hash === '' || $repository === '') {
+            $output->writeRaw("#### Error on {$file}:{$error->getLine()}\n");
+        } else {
+            $output->writeRaw(
+                "https://github.com/{$repository}/blob/{$hash}{$file}#L{$error->getLine()}\n"
+            );
+        }
+        $output->writeRaw(
+            "<span style='color: #ff4400; font-weight: bold'>" .
+            $error->getMessage() .
+            "</span>>\n");
     }
 
     protected function trailPath(string $path): string

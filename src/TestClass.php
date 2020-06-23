@@ -4,7 +4,7 @@ namespace Rozeo\Test;
 
 class TestClass
 {
-    public function get(): int
+    public function get()
     {
         return 1;
     }
