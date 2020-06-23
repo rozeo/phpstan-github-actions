@@ -39,5 +39,5 @@ on:
     GITHUB_URL: ${{ github.event.pull_request.comments_url }}
     GITHUB_SHA: ${{ github.sha }}
     GITHUB_REPOSITORY: ${{ github.repository }}
-  run: ./bin/phpstan-github-actions
+  run: ./vendor/bin/phpstan-github-actions
 ```
