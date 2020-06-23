@@ -45,9 +45,9 @@ class PHPStanMarkdownFormatter
             );
         }
         $output->writeRaw(
-            "<span style='color: #ff4400; font-weight: bold'>" .
+            "<span style=\"color: #ff4400; font-weight: bold\">" .
             $error->getMessage() .
-            "</span>>\n");
+            "</span>\n");
     }
 
     protected function trailPath(string $path): string
