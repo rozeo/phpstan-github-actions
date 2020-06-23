@@ -8,4 +8,9 @@ class TestClass
     {
         return 1;
     }
+
+    public function hoge()
+    {
+        
+    }
 }

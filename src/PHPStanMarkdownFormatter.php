@@ -38,16 +38,16 @@ class PHPStanMarkdownFormatter
         $file = $this->trailPath($error->getFile());
 
         if ($hash === '' || $repository === '') {
-            $output->writeRaw("#### Error on {$file}:{$error->getLine()}\n");
+            $output->writeRaw("Error on {$file}:{$error->getLine()}\n");
         } else {
             $output->writeRaw(
                 "https://github.com/{$repository}/blob/{$hash}{$file}#L{$error->getLine()}\n"
             );
         }
         $output->writeRaw(
-            "<span style=\"color: #ff4400; font-weight: bold\">" .
+            "#### " .
             $error->getMessage() .
-            "</span>\n");
+            "\n");
     }
 
     protected function trailPath(string $path): string
