@@ -27,7 +27,7 @@ class PullRequestResponder
         $this->message = $message;
     }
 
-    public function execute()
+    public function execute(): void
     {
         $client = new \GuzzleHttp\Client;
 

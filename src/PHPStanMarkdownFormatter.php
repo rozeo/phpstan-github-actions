@@ -7,6 +7,9 @@ use PHPStan\Command\Output;
 
 class PHPStanMarkdownFormatter
 {
+    /**
+     * @var string
+     */
     private $trailingPath;
 
     public function formatErrors(
@@ -27,7 +30,7 @@ class PHPStanMarkdownFormatter
         return intval(count($arr) !== 0);
     }
 
-    protected function outputError(Output $output, Error $error)
+    protected function outputError(Output $output, Error $error): void
     {
         $output->writeRaw("### Error on {$this->trailPath($error->getFile())}:{$error->getLine()}\n");
         $output->writeRaw($error->getMessage() . "\n");
