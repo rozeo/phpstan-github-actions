@@ -35,7 +35,8 @@ class PullRequestResponder
             'https' => array (
                 'method' => 'POST',
                 'header'=> "Content-type: application/json\r\n"
-                    . "Content-Length: " . strlen($data) . "\r\n",
+                    . "Content-Length: " . strlen($data) . "\r\n"
+                    . "Authorization: token {$this->githubToken}\r\n",
                 'content' => $data
             )
         ]);

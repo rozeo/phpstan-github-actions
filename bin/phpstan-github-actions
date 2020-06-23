@@ -1,0 +1,14 @@
+#!/usr/bin/env php
+<?php
+
+require_once __DIR__ . "/../vendor/autoload.php";
+
+$output = exec("./vendor/bin/phpstan analyse -c phpstan.neon");
+
+(new \Rozeo\PHPStanAction\PullRequestResponder(
+    getenv('GITHUB_PR_URL'),
+    getenv('GITHUB_TOKEN'),
+    $output
+))->execute();
+
+exit(0);

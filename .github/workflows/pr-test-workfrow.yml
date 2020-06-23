@@ -42,6 +42,9 @@ jobs:
       run : composer require phpstan/phpstan
     
     - name: running phpstan
-      run: php vendor/bin/phpstan analyze -c phpstan.neon
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_URL: ${{ github.event.pull_request.comments_url }}
+      run: ./bin/phpstan-github-actions
         
 
