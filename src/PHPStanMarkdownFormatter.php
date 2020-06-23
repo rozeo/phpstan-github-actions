@@ -29,8 +29,8 @@ class PHPStanMarkdownFormatter
 
     protected function outputError(Output $output, Error $error)
     {
-        $output->writeLineFormatted("### Error on {$this->trailPath($error->getFile())}:{$error->getLine()}");
-        $output->writeLineFormatted($error->getMessage());
+        $output->writeRaw("### Error on {$this->trailPath($error->getFile())}:{$error->getLine()}\n");
+        $output->writeRaw($error->getMessage() . "\n");
     }
 
     protected function trailPath(string $path): string

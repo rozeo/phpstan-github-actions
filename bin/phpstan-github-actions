@@ -6,6 +6,8 @@ require_once __DIR__ . "/../vendor/autoload.php";
 $output = exec("./vendor/bin/phpstan analyse -c phpstan.neon --no-progress --error-format=markdown");
 
 if ($output !== '') {
+    echo $output;
+
     (new \Rozeo\PHPStanAction\PullRequestResponder(
         getenv('GITHUB_URL'),
         getenv('GITHUB_TOKEN'),
