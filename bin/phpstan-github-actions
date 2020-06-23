@@ -1,0 +1,22 @@
+#!/usr/bin/env php
+<?php
+
+require_once __DIR__ . "/../vendor/autoload.php";
+
+$cmd = "./vendor/bin/phpstan analyse -c phpstan.neon --no-progress --error-format=markdown";
+$stream = popen($cmd, "r");
+$output = stream_get_contents($stream);
+fclose($stream);
+
+if ($output !== '') {
+    echo $output;
+
+    (new \Rozeo\PHPStanAction\PullRequestResponder(
+        getenv('GITHUB_URL'),
+        getenv('GITHUB_TOKEN'),
+        $output
+    ))->execute();
+    exit(1);
+}
+
+exit(0);

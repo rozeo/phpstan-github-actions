@@ -1,0 +1,27 @@
+{
+    "name": "rozeo/phpstan-github-actions",
+    "authors": [
+        {
+            "name": "phpstan-github-actions",
+            "email": "st.prog0908@gmail.com"
+        }
+    ],
+    "require": {
+        "symfony/console": "^5.1",
+        "phpstan/phpstan": "^0.12.30",
+        "guzzlehttp/guzzle": "^6.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Rozeo\\PHPStanAction\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "PHPStan\\": "highlights/"
+        }
+    },
+    "bin": [
+        "bin/phpstan-github-actions"
+    ]
+}
