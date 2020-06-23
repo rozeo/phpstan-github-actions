@@ -7,7 +7,8 @@
         }
     ],
     "require": {
-        "symfony/console": "^5.1"
+        "symfony/console": "^5.1",
+        "phpstan/phpstan": "^0.12.30"
     },
     "autoload": {
         "psr-4": {
@@ -19,8 +20,4 @@
             "PHPStan\\": "highlights/"
         }
     },
-    "require-dev": {
-        "phpstan/phpstan": "^0.12.30",
-        "phpstan/extension-installer": "^1.0"
-    }
 }
