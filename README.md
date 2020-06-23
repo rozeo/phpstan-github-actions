@@ -2,6 +2,9 @@
 PHPStan support for Github Pull Request On Github Actions
 ----
 
+Output Sample
+https://github.com/rozeo/phpstan-github-actions/pull/1#issuecomment-648011582
+
 ### Setup
 1. add dependecy in composer.json
 ```
