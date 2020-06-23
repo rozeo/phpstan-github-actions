@@ -8,7 +8,8 @@
     ],
     "require": {
         "symfony/console": "^5.1",
-        "phpstan/phpstan": "^0.12.30"
+        "phpstan/phpstan": "^0.12.30",
+        "guzzlehttp/guzzle": "^6.5"
     },
     "autoload": {
         "psr-4": {

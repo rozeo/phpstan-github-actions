@@ -29,18 +29,18 @@ class PullRequestResponder
 
     public function execute()
     {
-        $data = json_encode(['body' => $this->message]);
+        $client = new \GuzzleHttp\Client;
 
-        $stream = stream_context_create([
-            'https' => array (
-                'method' => 'POST',
-                'header'=> "Content-type: application/json\r\n"
-                    . "Content-Length: " . strlen($data) . "\r\n"
-                    . "Authorization: Bearer {$this->githubToken}\r\n",
-                'content' => $data
-            )
-        ]);
-
-        file_get_contents($this->endpoint, false, $stream);
+        $client->post(
+            $this->endpoint,
+            [
+                'headers' => [
+                    'Authorization' => 'Bearer ' . $this->githubToken,
+                ],
+                'json' => [
+                    'body' => $this->message,
+                ],
+            ]
+        );
     }
 }
