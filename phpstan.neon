@@ -2,3 +2,7 @@ parameters:
 	level: 6
 	paths:
 		- src
+
+services:
+    errorFormatter.awesome:
+    	class: Rozeo\Test\PHPStanMarkdownFormatter

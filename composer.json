@@ -1,18 +1,27 @@
 {
-    "name": "rozeo/github-actions-test",
+    "name": "rozeo/phpstan-github-actions",
     "authors": [
         {
-            "name": "kenta-yasuoka",
-            "email": "yasuokakenta@team-lab.com"
+            "name": "phpstan-github-actions",
+            "email": "st.prog0908@gmail.com"
         }
     ],
-    "require": {},
+    "require": {
+        "symfony/console": "^5.1"
+    },
     "autoload": {
         "psr-4": {
-            "Rozeo\\Test\\": "src/"
+            "Rozeo\\PHPStanAction\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "symfony/console": "^5.1",
+            "PHPStan\\": "highlights/"
         }
     },
     "require-dev": {
-        "phpstan/phpstan": "^0.12.30"
+        "phpstan/phpstan": "^0.12.30",
+        "phpstan/extension-installer": "^1.0"
     }
 }

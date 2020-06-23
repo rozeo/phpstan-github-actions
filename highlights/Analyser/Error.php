@@ -1,6 +1,6 @@
 <?php
 
-namespace PHPStan\Analyzer;
+namespace PHPStan\Analyser;
 
 interface Error
 {
