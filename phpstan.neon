@@ -4,5 +4,5 @@ parameters:
 		- src
 
 services:
-    errorFormatter.markdown:
+    errorFormatter.github-reviews:
     	class: Rozeo\PHPStanAction\PHPStanMarkdownFormatter

@@ -12,46 +12,45 @@ class PHPStanMarkdownFormatter
      */
     private $trailingPath;
 
+    private $formattedErrors;
+
     public function formatErrors(
         \PHPStan\Command\AnalysisResult $analysisResult,
         \PHPStan\Command\Output $output
     ): int
     {
+        $this->formattedErrors = [];
         $this->trailingPath = dirname($analysisResult->getProjectConfigFile());
 
+        /**
+         * @var int $index
+         * @var Error $error
+         */
         foreach ($arr = $analysisResult->getFileSpecificErrors() as $index => $error) {
-            $this->outputError($output, $error);
-
-            if ($index !== array_key_last($arr)) {
-                $output->writeRaw("\n----\n\n");
-            }
+            $this->formattedErrors[] = [
+                'path' => $this->trailPath($error->getFile()),
+                'position' => $error->getLine(),
+                'body' => $error->getMessage(),
+            ];
         }
 
-        return intval(count($arr) !== 0);
-    }
+        $this->outputFormattedErrors();
 
-    protected function outputError(Output $output, Error $error): void
-    {
-        $hash = getenv('GITHUB_SHA');
-        $repository = getenv('GITHUB_REPOSITORY');
-
-        $file = $this->trailPath($error->getFile());
-
-        if ($hash === '' || $repository === '') {
-            $output->writeRaw("Error on {$file}:{$error->getLine()}\n");
-        } else {
-            $output->writeRaw(
-                "https://github.com/{$repository}/blob/{$hash}{$file}#L{$error->getLine()}\n"
-            );
-        }
-        $output->writeRaw(
-            "#### " .
-            $error->getMessage() .
-            "\n");
+        return intval(count($this->formattedErrors) !== 0);
     }
 
     protected function trailPath(string $path): string
     {
         return str_replace($this->trailingPath, "", $path);
+    }
+
+    public function getFormattedErrors(): array
+    {
+        return $this->formattedErrors;
+    }
+
+    public function outputFormattedErrors(): void
+    {
+        echo json_encode($this->formattedErrors);
     }
 }

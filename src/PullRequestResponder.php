@@ -16,15 +16,15 @@ class PullRequestResponder
      */
     private $githubToken;
     /**
-     * @var string
+     * @var array
      */
-    private $message;
+    private $reviews;
 
-    public function __construct(string $endpoint, string $githubToken, string $message)
+    public function __construct(string $endpoint, string $githubToken, array $reviews)
     {
         $this->endpoint = $endpoint;
         $this->githubToken = $githubToken;
-        $this->message = $message;
+        $this->reviews = $reviews;
     }
 
     public function execute(): void
@@ -39,9 +39,19 @@ class PullRequestResponder
                     'Authorization' => 'Bearer ' . $this->githubToken,
                 ],
                 'json' => [
-                    'body' => $this->message,
+                    'body' => json_encode($this->makeJson()),
                 ],
             ]
         );
+    }
+
+    protected function makeJson()
+    {
+        return [
+            // 'commit_id' => '', optional
+            'body' => 'phpstan review has failed. check errors and fix it.',
+            'event' => 'REQUEST_CHANGES',
+            'comments' => $this->reviews,
+        ];
     }
 }
