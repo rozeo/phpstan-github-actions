@@ -13,7 +13,7 @@ foreach ($pathes as $path) {
     }
 }
 
-$cmd = "./vendor/bin/phpstan analyse -c phpstan.neon --no-progress --error-format=github-reviews";
+$cmd = "./vendor/bin/phpstan analyse -c phpstan.neon --no-progress --error-format=reviewsjson";
 $stream = popen($cmd, "r");
 $outputErrors = json_decode($u = stream_get_contents($stream), true);
 fclose($stream);
