@@ -31,6 +31,8 @@ class PullRequestResponder
     {
         $client = new \GuzzleHttp\Client;
 
+        echo json_encode($this->makeJson(), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+
         $client->request(
             'POST',
             $this->endpoint,
