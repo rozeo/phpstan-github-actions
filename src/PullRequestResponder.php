@@ -19,12 +19,17 @@ class PullRequestResponder
      * @var array
      */
     private $reviews;
+    /**
+     * @var string
+     */
+    private $hash;
 
-    public function __construct(string $endpoint, string $githubToken, array $reviews)
+    public function __construct(string $endpoint, string $githubToken, string $hash, array $reviews)
     {
         $this->endpoint = $endpoint;
         $this->githubToken = $githubToken;
         $this->reviews = $reviews;
+        $this->hash = $hash;
     }
 
     public function execute(): void
@@ -50,8 +55,8 @@ class PullRequestResponder
     protected function makeJson()
     {
         return [
-            // 'commit_id' => '', optional
-            'body' => 'phpstan review has failed. check errors and fix it.',
+            'commit_id' => $this->hash,
+            'body' => 'PHPStan review has failed. check errors and fix it.',
             'event' => 'REQUEST_CHANGES',
             'comments' => $this->reviews,
         ];

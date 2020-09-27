@@ -22,6 +22,7 @@ if (count($outputErrors) > 0) {
     (new \Rozeo\PHPStanAction\PullRequestResponder(
         getenv('GITHUB_URL') . '/reviews',
         getenv('GITHUB_TOKEN'),
+        getenv('GITHUB_SHA'),
         $outputErrors,
     ))->execute();
     exit(1);
