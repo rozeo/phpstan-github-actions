@@ -45,9 +45,7 @@ class PullRequestResponder
                 'headers' => [
                     'Authorization' => 'Bearer ' . $this->githubToken,
                 ],
-                'json' => [
-                    'body' => json_encode($this->makeJson()),
-                ],
+                'json' => $this->makeJson(),
             ]
         );
     }
@@ -57,7 +55,7 @@ class PullRequestResponder
         return [
             'commit_id' => $this->hash,
             'body' => 'PHPStan review has failed. check errors and fix it.',
-            'event' => 'PENDING',
+            'event' => 'REQUEST_CHANGES',
             'comments' => $this->reviews,
         ];
     }
