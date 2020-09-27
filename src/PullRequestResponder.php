@@ -20,6 +20,12 @@ class PullRequestResponder
      */
     private $reviews;
 
+    /**
+     * PullRequestResponder constructor.
+     * @param string $endpoint
+     * @param string $githubToken
+     * @param mixed[] $reviews
+     */
     public function __construct(string $endpoint, string $githubToken, array $reviews)
     {
         $this->endpoint = $endpoint;

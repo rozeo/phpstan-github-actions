@@ -47,6 +47,9 @@ class PHPStanGithubReviewsJsonFormatter
         return str_replace($this->trailingPath . "/", "", $path);
     }
 
+    /**
+     * @return mixed[]
+     */
     public function getFormattedErrors(): array
     {
         return $this->formattedErrors;
