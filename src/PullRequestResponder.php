@@ -55,7 +55,7 @@ class PullRequestResponder
         return [
             'body' => 'PHPStan review has failed. check errors and fix it.',
             'event' => 'REQUEST_CHANGES',
-            'comments' => [$this->reviews[0]],
+            'comments' => $this->reviews,
         ];
     }
 }

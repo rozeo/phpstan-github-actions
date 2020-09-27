@@ -12,6 +12,9 @@ class PHPStanGithubReviewsJsonFormatter
      */
     private $trailingPath;
 
+    /**
+     * @var array
+     */
     private $formattedErrors;
 
     public function formatErrors(
