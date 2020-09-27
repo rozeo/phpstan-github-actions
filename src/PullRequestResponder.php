@@ -50,7 +50,10 @@ class PullRequestResponder
         );
     }
 
-    protected function makeJson()
+    /**
+     * @return array
+     */
+    protected function makeJson(): array
     {
         return [
             'body' => 'PHPStan review has failed. check errors and fix it.',
