@@ -5,7 +5,7 @@ namespace Rozeo\PHPStanAction;
 use PHPStan\Analyser\Error;
 use PHPStan\Command\Output;
 
-class PHPStanMarkdownFormatter
+class PHPStanGithubReviewsJsonFormatter
 {
     /**
      * @var string
