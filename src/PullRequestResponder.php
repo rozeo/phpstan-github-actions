@@ -16,27 +16,20 @@ class PullRequestResponder
      */
     private $githubToken;
     /**
-     * @var array
+     * @var mixed[]
      */
     private $reviews;
-    /**
-     * @var string
-     */
-    private $hash;
 
-    public function __construct(string $endpoint, string $githubToken, string $hash, array $reviews)
+    public function __construct(string $endpoint, string $githubToken, array $reviews)
     {
         $this->endpoint = $endpoint;
         $this->githubToken = $githubToken;
         $this->reviews = $reviews;
-        $this->hash = $hash;
     }
 
     public function execute(): void
     {
         $client = new \GuzzleHttp\Client;
-
-        echo json_encode($this->makeJson(), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
 
         $client->request(
             'POST',
@@ -51,7 +44,7 @@ class PullRequestResponder
     }
 
     /**
-     * @return array
+     * @return mixed[]
      */
     protected function makeJson(): array
     {

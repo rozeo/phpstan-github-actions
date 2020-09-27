@@ -13,7 +13,7 @@ class PHPStanGithubReviewsJsonFormatter
     private $trailingPath;
 
     /**
-     * @var array
+     * @var mixed[]
      */
     private $formattedErrors;
 
