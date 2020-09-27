@@ -41,7 +41,7 @@ class PHPStanGithubReviewsJsonFormatter
 
     protected function trailPath(string $path): string
     {
-        return str_replace($this->trailingPath, "", $path);
+        return str_replace($this->trailingPath . "/", "", $path);
     }
 
     public function getFormattedErrors(): array
