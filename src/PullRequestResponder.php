@@ -53,10 +53,9 @@ class PullRequestResponder
     protected function makeJson()
     {
         return [
-            'commit_id' => $this->hash,
             'body' => 'PHPStan review has failed. check errors and fix it.',
             'event' => 'REQUEST_CHANGES',
-            'comments' => $this->reviews,
+            'comments' => [$this->reviews[0]],
         ];
     }
 }
