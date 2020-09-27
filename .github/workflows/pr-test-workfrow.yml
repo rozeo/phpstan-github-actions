@@ -44,7 +44,7 @@ jobs:
     - name: running phpstan
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        GITHUB_URL: ${{ github.event.pull_request.head.repo.pulls_url }}
+        GITHUB_URL: ${{ github.event.pull_request.url }}
         GITHUB_SHA: ${{ github.sha }}
         GITHUB_REPOSITORY: ${{ github.repository }}
       run: ./bin/phpstan-github-actions
