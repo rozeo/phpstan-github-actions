@@ -13,18 +13,16 @@ foreach ($pathes as $path) {
     }
 }
 
-$cmd = "./vendor/bin/phpstan analyse -c phpstan.neon --no-progress --error-format=markdown";
+$cmd = "./vendor/bin/phpstan analyse -c phpstan.neon --no-progress --error-format=reviewsjson";
 $stream = popen($cmd, "r");
-$output = stream_get_contents($stream);
+$outputErrors = json_decode(stream_get_contents($stream), true);
 fclose($stream);
 
-if ($output !== '') {
-    echo $output;
-
+if (count($outputErrors) > 0) {
     (new \Rozeo\PHPStanAction\PullRequestResponder(
-        getenv('GITHUB_URL'),
+        getenv('GITHUB_URL') . '/reviews',
         getenv('GITHUB_TOKEN'),
-        $output
+        $outputErrors,
     ))->execute();
     exit(1);
 }

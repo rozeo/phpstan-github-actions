@@ -16,15 +16,21 @@ class PullRequestResponder
      */
     private $githubToken;
     /**
-     * @var string
+     * @var mixed[]
      */
-    private $message;
+    private $reviews;
 
-    public function __construct(string $endpoint, string $githubToken, string $message)
+    /**
+     * PullRequestResponder constructor.
+     * @param string $endpoint
+     * @param string $githubToken
+     * @param mixed[] $reviews
+     */
+    public function __construct(string $endpoint, string $githubToken, array $reviews)
     {
         $this->endpoint = $endpoint;
         $this->githubToken = $githubToken;
-        $this->message = $message;
+        $this->reviews = $reviews;
     }
 
     public function execute(): void
@@ -38,10 +44,20 @@ class PullRequestResponder
                 'headers' => [
                     'Authorization' => 'Bearer ' . $this->githubToken,
                 ],
-                'json' => [
-                    'body' => $this->message,
-                ],
+                'json' => $this->makeJson(),
             ]
         );
+    }
+
+    /**
+     * @return mixed[]
+     */
+    protected function makeJson(): array
+    {
+        return [
+            'body' => 'PHPStan review has failed. check errors and fix it.',
+            'event' => 'REQUEST_CHANGES',
+            'comments' => $this->reviews,
+        ];
     }
 }
