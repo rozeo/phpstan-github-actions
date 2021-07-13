@@ -54,10 +54,12 @@ class PullRequestResponder
      */
     protected function makeJson(): array
     {
+        $count = count($this->reviews);
+
         return [
-            'body' => 'PHPStan review has failed. check errors and fix it.',
+            'body' => "Found $count errors in inspection. check errors and fix it. (listing max 100 errors.)",
             'event' => 'REQUEST_CHANGES',
-            'comments' => $this->reviews,
+            'comments' => array_slice($this->reviews, 0, 100),
         ];
     }
 }
